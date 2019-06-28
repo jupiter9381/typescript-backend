@@ -1,7 +1,7 @@
 {
-  "name": "Voom",
-  "version": "0.1.0",
-  "description": "Voom Backend",
+  "name": "backend-typescript",
+  "version": "0.0.0",
+  "description": "Typescript Backend",
   "repository": {
     "type": "git"
   },
