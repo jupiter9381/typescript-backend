@@ -1,0 +1,131 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Vooom",
+    "description": "",
+    "version": "1.0"
+  },
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/test": {
+      "post": {
+        "x-swagger-router-controller": "home",
+        "operationId": "index",
+        "tags": [
+          "/test"
+        ],
+        "description": "[Login 123](https://www.google.com)",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "id":{
+                      "type": "number"
+                    }
+                  }
+                }
+
+              }
+            },
+            "required": true
+
+
+          }
+          {
+            "name": "test",
+            "in": "formData",
+            "type": "array",
+            "collectionFormat": "multi",
+            "items": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "profileId",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": "true"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/bar": {
+      "get": {
+        "x-swagger-router-controller": "bar",
+        "operationId": "impossible",
+        "tags": [
+          "/test"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/": {
+      "get": {
+        "x-swagger-router-controller": "index",
+        "operationId": "impossible",
+        "tags": [
+          "/"
+        ],
+        "description": "our swagger demo test",
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "x-swagger-router-controller": "index",
+        "operationId": "index",
+        "tags": [
+          "/"
+        ],
+        "description": "[Login 123](https://www.google.com)",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "id":{
+                      "type": "number"
+                    }
+                  }
+                }
+
+              }
+            },
+            "required": true
+
+
+          }
+
+        ],
+        "responses": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,1278 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Vooom",
+    "description": "",
+    "version": "1.0"
+  },
+  "basePath": "/vendor",
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "JWT": {
+      "description": "",
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "paths": {
+    "/session/sign": {
+      "post": {
+        "x-swagger-router-controller": "session",
+        "operationId": "sign",
+        "tags": [
+          "/session"
+        ],
+        "description": "sign ",
+        "parameters": [
+          {
+            "name": "userName",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "format": "password"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "Authorization Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "404": {
+            "description": "incorrect user name or password "
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/session/logout": {
+      "get": {
+        "x-swagger-router-controller": "session",
+        "operationId": "logout",
+        "tags": [
+          "/session"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "logout ",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/products/import": {
+      "post": {
+        "x-swagger-router-controller": "products",
+        "operationId": "import",
+        "tags": [
+          "/products"
+        ],
+        "description": "import products from xlsx file",
+        "parameters": [
+          {
+            "name": "excel",
+            "in": "formData",
+            "type": "file",
+            "required": true,
+            "description": "file header is [title    price    quantity   imageUrl   description   sale_price   category    subcategory    var-combo-0    var-size-1    var-extras-0]"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "x-swagger-router-controller": "products",
+        "operationId": "product/{id}",
+        "tags": [
+          "/products"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "product api",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "x-swagger-router-controller": "products",
+        "operationId": "get",
+        "tags": [
+          "/products"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "product api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "post": {
+        "x-swagger-router-controller": "products",
+        "operationId": "post",
+        "tags": [
+          "/products"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "product post method",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+
+          {
+            "name": "description",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sale_price",
+            "in": "formData",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "productExtraGroup",
+            "in": "formData",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "extraIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "sub_categories_ids",
+            "in": "formData",
+            "required": true,
+            "type": "array",
+            "collectionFormat": "csv",
+            "items": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "barcode",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "put": {
+        "x-swagger-router-controller": "products/",
+        "operationId": "products/:id",
+        "tags": [
+          "/products"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "product post method",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sale_price",
+            "in": "formData",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "productExtraGroup",
+            "in": "formData",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "extraIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "sub_categories_ids",
+            "in": "formData",
+            "required": true,
+            "type": "array",
+            "collectionFormat": "csv",
+            "items": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "barcode",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "delete": {
+        "x-swagger-router-controller": "products",
+        "operationId": "products",
+        "tags": [
+          "/products"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "product delete method",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/orders/{id}": {
+      "get": {
+        "x-swagger-router-controller": "orders",
+        "operationId": "show",
+        "tags": [
+          "/orders"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "orders api",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "x-swagger-router-controller": "orders",
+        "operationId": "index",
+        "tags": [
+          "/orders"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "orders api",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "post": {
+        "x-swagger-router-controller": "orders",
+        "operationId": "create",
+        "tags": [
+          "/orders"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "orders post method",
+        "parameters": [
+          {
+            "name": "reference",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "Pending",
+              "Shipped",
+              "Delivered",
+              "InProgress",
+              "Completed"
+            ]
+          },
+          {
+            "name": "payment_method",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "COD",
+              "Credit"
+            ]
+          },
+
+          {
+            "name": "user",
+            "in": "formData",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "number"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "location": {
+                    "type": "string"
+                  },
+                  "latitude": {
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "products",
+            "in": "formData",
+            "required": true,
+            "type": "array",
+            "collectionFormat": "multi",
+            "items": {
+              "type": "object",
+              "properties": {
+                "qty": {
+                  "type": "number"
+                },
+                "id": {
+                  "type": "number"
+                },
+                "store_id": {
+                  "type": "number"
+                },
+                "extra": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "group_id": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "created_at",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "timestamp"
+          },
+          {
+            "name": "updated_at",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "timestamp"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "put": {
+        "x-swagger-router-controller": "orders/",
+        "operationId": "update",
+        "tags": [
+          "/orders"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "orders post method",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "in": "formData",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "number"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "location": {
+                    "type": "string"
+                  },
+                  "latitude": {
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "payment_method",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "COD",
+              "Credit"
+            ]
+          },
+          {
+            "name": "updated_at",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "timestamp"
+          },
+          {
+            "name": "products",
+            "in": "formData",
+            "required": true,
+            "type": "array",
+            "collectionFormat": "multi",
+            "items": {
+              "$ref": "#/definitions/ProductRequest"
+            }
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "Pending",
+              "Shipped",
+              "Delivered",
+              "InProgress",
+              "Completed"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/store": {
+      "get": {
+        "x-swagger-router-controller": "store",
+        "operationId": "impossible",
+        "tags": [
+          "/store"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "store api",
+        "parameters": [
+        ],
+        "responses": {
+        }
+      },
+      "put": {
+        "x-swagger-router-controller": "store/",
+        "operationId": "store/",
+        "tags": [
+          "/store"
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "description": "store put method",
+        "parameters": [
+          {
+            "name": "store",
+            "in": "formData",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "store_type_id": {
+                "type": "number"
+              }
+            },
+            "required": false
+          },
+          {
+            "name": "storeContact",
+            "in": "formData",
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "string"
+              },
+              "mobile": {
+                "type": "string"
+              }
+            },
+            "required": false
+          },
+          {
+            "name": "workingHours",
+            "in": "formData",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "day": {
+                  "type": "number"
+                },
+                "starting_hour": {
+                  "type": "number"
+                },
+                "ending_hour": {
+                  "type": "number"
+                },
+                "shift_starting_hour": {
+                  "type": "number"
+                },
+                "shift_ending_hour": {
+                  "type": "number"
+                }
+              }
+            },
+            "required": false
+          },
+          {
+            "name": "contactPerson",
+            "in": "formData",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "string"
+              },
+              "mobile": {
+                "type": "string"
+              }
+            },
+            "required": false
+          },
+          {
+            "name": "storeSocialData",
+            "in": "formData",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "facebook": {
+                  "type": "string"
+                },
+                "twitter": {
+                  "type": "string"
+                },
+                "instagram": {
+                  "type": "string"
+                },
+                "youtube": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": false
+          },
+          {
+            "name": "storeAddress",
+            "in": "formData",
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "string"
+              },
+              "lng": {
+                "type": "string"
+              },
+              "street": {
+                "type": "string"
+              },
+              "area": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "zipCode": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": false
+          },
+          {
+            "name": "logo",
+            "in": "formData",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "header",
+            "in": "formData",
+            "required": false,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid"
+          },
+          "5XX": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ProductRequest": {
+      "type": "object",
+      "properties": {
+        "qty": {
+          "type": "number"
+        },
+        "id": {
+          "type": "number"
+        },
+        "store_id": {
+          "type": "number"
+        },
+        "extra": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "group_id": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties":{
+        "userName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "json": {
+        "name": "User"
+      }
+    },
+    "Products": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "productExtraGroup": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "extraIds": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sub_categories_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "barcode": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "json": {
+        "name": "Products"
+      }
+    },
+    "Orders": {
+      "type": "object",
+      "properties": {
+
+  "reference": {
+    "type": "string"
+  },
+  "status": {
+    "type": "string",
+    "enum": [
+      "Pending",
+      "Shipped",
+      "Delivered",
+      "InProgress",
+      "Completed"
+    ]
+  },
+"payment_method": {
+    "type": "string",
+    "enum": [
+      "COD",
+      "Credit"
+    ]
+  },
+
+ "user": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "number"
+      },
+      "name": {
+        "type": "string"
+      },
+      "phone": {
+        "type": "number"
+      },
+      "address": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+ "products": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "qty": {
+          "type": "number"
+        },
+        "id": {
+          "type": "number"
+        },
+        "store_id": {
+          "type": "number"
+        },
+        "extra": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "group_id": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+"created_at":  {
+    "type": "string",
+    "description": "timestamp"
+  },
+"updated_at":  {
+    "type": "string",
+    "description": "timestamp"
+  }
+      },
+      "json": {
+        "name": "Orders"
+      }
+    },
+    "Store": {
+      "type": "object",
+      "properties": {
+        "store": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "store_type_id": {
+              "type": "number"
+            }
+          }
+        },
+        "storeContact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "mobile": {
+              "type": "string"
+            }
+          }
+        },
+        "workingHours": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": {
+                "type": "number"
+              },
+              "starting_hour": {
+                "type": "number"
+              },
+              "ending_hour": {
+                "type": "number"
+              },
+              "shift_starting_hour": {
+                "type": "number"
+              },
+              "shift_ending_hour": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "contactPerson": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "mobile": {
+              "type": "string"
+            }
+          }
+        },
+        "storeSocialData": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "facebook": {
+                "type": "string"
+              },
+              "twitter": {
+                "type": "string"
+              },
+              "instagram": {
+                "type": "string"
+              },
+              "youtube": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "storeAddress": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "string"
+            },
+            "lng": {
+              "type": "string"
+            },
+            "street": {
+              "type": "string"
+            },
+            "area": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "zipCode": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "logo": {
+          "type": "string"
+        },
+        "header": {
+          "type": "string"
+        }
+      },
+      "json": {
+        "name": "Store"
+      }
+    }
+  }
+}
