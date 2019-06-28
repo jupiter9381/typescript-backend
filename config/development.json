@@ -1,0 +1,14 @@
+{
+    "name": "vooom",
+    "db": {
+        "host": "159.8.125.139",
+        "port": "27018",
+        "name": "vooom"
+    },
+    "mysql": {
+        "host": "159.8.125.139",
+        "user": "jeffrey",
+        "database": "vooom",
+        "port": 3306
+    }
+}

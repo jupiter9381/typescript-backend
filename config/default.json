@@ -1,0 +1,20 @@
+{
+  "name": "vooom",
+  "baseUrl":"http://159.8.125.139:3000",
+  "db": {
+    "host": "159.8.125.139",
+    "port": "27018",
+    "name": "vooom"
+  },
+  "mysql": {
+    "host": "159.8.125.139",
+    "user": "jeffrey",
+    "database": "vooom",
+    "port": 3306
+  },
+  "realtime": {
+    "host": "http://localhost/",
+    "port": "8000",
+    "path": "notify"
+  }
+}
