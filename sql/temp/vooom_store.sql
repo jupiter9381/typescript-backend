@@ -1,0 +1,4 @@
+INSERT INTO vooom.store (id, name, logo, description, storeAddress_id, storeType_id, vendor_id, storeSocialData_id, status, header) VALUES (1, 'test4MKK', 'test4', 'test4', 82, 0, 1, 87, 0, 'uploads/stores/headers/1/Screenshot from 2019-03-30 09-55-47.png');
+INSERT INTO vooom.store (id, name, logo, description, storeAddress_id, storeType_id, vendor_id, storeSocialData_id, status, header) VALUES (3, 'test2', 'test', 'test', 1, 0, 1, 1, 0, null);
+INSERT INTO vooom.store (id, name, logo, description, storeAddress_id, storeType_id, vendor_id, storeSocialData_id, status, header) VALUES (4, 'test2', 'test', 'test', 1, 0, 1, 1, 0, null);
+INSERT INTO vooom.store (id, name, logo, description, storeAddress_id, storeType_id, vendor_id, storeSocialData_id, status, header) VALUES (5, 'test2', 'test', 'test', 1, 0, 1, 1, 0, null);

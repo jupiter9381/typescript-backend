@@ -1,0 +1,12 @@
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (73, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (74, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (75, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (76, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (77, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (78, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (79, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (80, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (81, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (82, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (83, '1Updated', '1Updated', '1Updated', '1Updated', 1);
+INSERT INTO vooom.storeSocialData (id, facebook, twitter, instagram, youtube, store_id) VALUES (87, '1Updated', '1Updated', '1Updated', '1Updated', 1);

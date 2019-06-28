@@ -1,0 +1,10 @@
+INSERT INTO vooom.category (id, name) VALUES (1, 'category');
+INSERT INTO vooom.category (id, name) VALUES (2, 'category');
+INSERT INTO vooom.category (id, name) VALUES (3, 'category');
+INSERT INTO vooom.category (id, name) VALUES (4, 'category');
+INSERT INTO vooom.category (id, name) VALUES (5, 'category');
+INSERT INTO vooom.category (id, name) VALUES (6, 'category');
+INSERT INTO vooom.category (id, name) VALUES (7, 'category');
+INSERT INTO vooom.category (id, name) VALUES (8, 'category');
+INSERT INTO vooom.category (id, name) VALUES (9, 'category');
+INSERT INTO vooom.category (id, name) VALUES (10, 'category');

@@ -1,0 +1,12 @@
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (1, 'xl', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (2, 'lg', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (3, 'm', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (4, 'xll', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (5, 'pepsi', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (6, 'coca', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (7, 'no', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (8, 'yes', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (9, 's', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (10, 'cheese', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (11, 'olives', 1, 30);
+INSERT INTO vooom.extra (id, name, sub_category_id, price) VALUES (12, 'l', 1, 30);

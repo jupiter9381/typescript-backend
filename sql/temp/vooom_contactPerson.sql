@@ -1,0 +1,1 @@
+INSERT INTO vooom.contactPerson (id, store_id, email, name, phone, mobile) VALUES (62, 1, '2Updated', '2', '2', '2');

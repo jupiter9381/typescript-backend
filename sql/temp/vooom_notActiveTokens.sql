@@ -1,0 +1,2 @@
+INSERT INTO vooom.notActiveTokens (user_id, token) VALUES (50, '432432');
+INSERT INTO vooom.notActiveTokens (user_id, token) VALUES (50, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzQ1Njc4OTAwMDEyMzQ1Njc4OTAwIiwiZnVsbE5hbWUiOiIxMjM0NTY3ODkwMDAxMjM0NTY3ODkwMCIsImlkIjo1MCwic3RvcmVfaWQiOjEsImlhdCI6MTU1NTE4MTEwMH0.ANrlha0zc2rGzsSbdow1HZZKVKkcTxMQDjaVROf047I');

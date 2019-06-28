@@ -1,0 +1,2 @@
+INSERT INTO vooom.workingHours (id, store_id, day, start_1, finish_1, start_2, finish_2) VALUES (194, 1, 111, 22333, 333333, null, null);
+INSERT INTO vooom.workingHours (id, store_id, day, start_1, finish_1, start_2, finish_2) VALUES (195, 1, 11122, 23222333, 4323, null, null);

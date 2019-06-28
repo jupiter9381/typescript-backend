@@ -1,0 +1,1 @@
+INSERT INTO vooom.storeContact (id, store_id, email, phone, mobile) VALUES (114, 1, '1mmm', '11mmm', '1mm');
